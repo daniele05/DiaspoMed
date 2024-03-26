@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $foneUser = null;
 
     #[ORM\Column]
-    private ?int $address = null;
+    private ?string $address = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -162,14 +162,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress(): ?int
+    public function getAddress(): ?string
     {
-        return $this->foneUser;
+        return $this->address;
     }
 
-    public function setAddress(int $foneUser): static
+    public function setAddress(string $address): static
     {
-        $this->foneUser = $foneUser;
+        $this->foneUser = $address;
 
         return $this;
     }

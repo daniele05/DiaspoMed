@@ -7,6 +7,7 @@ use App\Entity\DoctorUser;
 use App\Entity\PatientUser;
 use App\Entity\User;
 use App\Repository\DoctorUserRepository;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -23,7 +24,7 @@ class UserFixtures extends Fixture
            ->setFoneUser(+5145453540)
            ->setRoles(DoctorUser::class, PatientUser::class)
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2012-19-05))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2012-19-16))
         ;
         $manager->persist($u1);
 
@@ -36,7 +37,7 @@ class UserFixtures extends Fixture
             ->setFoneUser(+5145453546)
             ->setRoles(DoctorUser::class,PatientUser::class,AdminController::class)
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2014-14-8))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2014-14-10))
         ;
         $manager->persist($u2);
 

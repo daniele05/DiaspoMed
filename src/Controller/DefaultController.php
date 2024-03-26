@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DoctorUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,8 +15,7 @@ class DefaultController extends AbstractController
    #[Route('/','home',methods: ['GET'])]
 #Ex. http://127.0.0.1:8000/
         # en param -> la liste des medecins demandée dans le homepage.
-    public function home(): Response
-    {
+    public function home(): Response    {
 
         /*
          * tableau associatif  */
