@@ -1,0 +1,44 @@
+<!--navbar -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('assets/images/logoUmla.png')}}" alt="image " class="img-fluid logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarColor04">
+            <ul class="navbar-nav  mr-auto mx-5">
+                <li class="nav-item ml-5 ">
+                    <a class="nav-link text-info active" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{{ path('app_default_presentation') }}">A propos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-info dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Nos Services</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item " href="#">Nos Spécialités</a>
+                        <a class="dropdown-item text-info" href="{{ path('app_default_medecins') }}">Médécins</a>
+                        <a class="dropdown-item text-info" href="{{ path('app_default_videoconsultation') }}">Vidéo Consultation</a>
+                        <a class="dropdown-item text-info" href="{{ path('app_default_posologie') }}">Posologie</a>
+                        <div class="dropdown-divider"></div>
+                        {% if app.user %}
+                            <a class="dropdown-item text-info" href="#">Déconnexion</a>
+                        {% else %}
+                            <a class="dropdown-item text-info" href="#">Connexion</a>
+                            <a class="dropdown-item text-info" href="#">Inscription</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+            <form class="d-flex m-3" >
+                <label>
+                    <input class="form-control text-info me-sm-2" type="search" placeholder="Search">
+                </label>
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

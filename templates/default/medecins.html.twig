@@ -1,0 +1,212 @@
+{% extends "base.html.twig" %}
+
+{% block title %} ici ma Page Médécins {% endblock %}
+
+{% block body %}
+    <div class="text-center mb-4">
+        <h3 class="display-5">Annuaire <span class="text-info">Médécins</span></h3>
+    </div>
+
+    <!-choix patients et specialites -->
+
+    <div class="container">
+        <h1 class="display-6">Choix de médecins</h1>
+
+        <!-- Filtres -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label>
+                    <select class="form-control m-3">
+                        <option value="">Spécialité</option>
+                        <option value="orthophoniste">Orthophoniste</option>
+                        <option value="dentiste">Dentiste</option>
+                        <!-- Ajoutez d'autres options selon vos besoins -->
+                    </select>
+                </label>
+            </div>
+            <div class="col-md-4">
+                <label>
+                    <select class="form-control m-3">
+                        <option value="">Ville</option>
+                        <option value="paris">Paris</option>
+                        <option value="lyon">Sao Paolo</option>
+                        <!-- Ajoutez d'autres options selon vos besoins -->
+                    </select>
+                </label>
+            </div>
+            <div class="col-md-5">
+                <button class="btn btn-info">Filtrer</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <<!-- Ajoutez cartes pour médecins ici -->
+
+
+    <div class="container mb-5">
+        <div class="row  mt-5">
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/Doct. Alex.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Alex <span class="text-info">HAROLD</span></h5>
+                        <p class="card-text text-info">Orthophoniste</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-5 ml-5">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-left">Langues parlées: Français, Anglais.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-moi au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct.HAROLD</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">AharoldK05@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/doct1.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Emmanuel <span class="text-info">PARISE</span> </h5>
+                        <p class="card-text text-info">Podologue</p>
+                        <div class="row ">
+                            <div class="col-md-6 mb-5 ml-5 ">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p>Langues parlées: Français, Espagnol.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-nous au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct.PARISE</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">Eparise1978@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/Doct. Axel.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Axel  <span class="text-info">AUREL</span> </h5>
+                        <p class="card-text text-info">Orthopédiste</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-5 ml-5">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p>Langues parlées: Français, Portugais.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-moi au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct. AUREL</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">AAurel06@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row  mt-5">
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/Doct. Coco.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Coco<span class="text-info"> MARTINE</span></h5>
+                        <p class="card-text text-info">Cardiologue</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-5 ml-5">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-left">Langues parlées: Français.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-moi au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct.MARTINE</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">Martinecoco05@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/ekonda.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Elene <span class="text-info">KONDA</span> </h5>
+                        <p class="card-text text-info">Endocrinologue</p>
+                        <div class="row ">
+                            <div class="col-md-6 mb-5 ml-5 ">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p>Langues parlées: Français, Espagnol.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-nous au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct.KONDA</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">Ekonda1978@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="img-thumbnail" src="{{ asset('assets/images/doct1.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Doct. Astride  <span class="text-info">KONDA</span> </h5>
+                        <p class="card-text text-info">Orthopédiste</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-5 ml-5">
+                                <img src="{{ asset('assets/images/langues.png') }}" class="img-fluid w-25" alt="Image">
+                            </div>
+                            <div class="col-md-6">
+                                <p>Langues parlées:  Portugais.</p>
+                            </div>
+                        </div>
+                        <p class="card-text">Appelez-moi au <a href="tel:+123456789">+1 (234) 567-89</a>.</p>
+                        <p class="card-text">Consultez mon cv: <a href="{{ asset('assets/images/CV medical.png') }}">Cv Doct. KONDA</a>.</p>
+                        <p class="card-text">Envoyez-moi un e-mail à <a href="mailto:votre@email.com">Astridekonda05@gmail.com</a>.</p>
+                        <!--Prendre rdv -->
+                        <div>
+                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
