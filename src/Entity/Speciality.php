@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SpecialityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use MongoDB\BSON\Type;
 
 #[ORM\Entity(repositoryClass: SpecialityRepository::class)]
 class Speciality
@@ -15,17 +16,29 @@ class Speciality
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\Column(length: 150)]
     private ?string $specialityName = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $descriptionSpeciality = null;
-
-    #[ORM\ManyToOne(inversedBy: 'speciality')]
-    private ?DoctorUser $Id_Speciality = null;
+    private ?string $specialityContent = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
     public function getSpecialityName(): ?string
@@ -40,26 +53,14 @@ class Speciality
         return $this;
     }
 
-    public function getDescriptionSpeciality(): ?string
+    public function getSpecialityContent(): ?string
     {
-        return $this->descriptionSpeciality;
+        return $this->specialityContent;
     }
 
-    public function setDescriptionSpeciality(string $descriptionSpeciality): static
+    public function setSpecialityContent(string $specialityContent): static
     {
-        $this->descriptionSpeciality = $descriptionSpeciality;
-
-        return $this;
-    }
-
-    public function getIdSpeciality(): ?DoctorUser
-    {
-        return $this->Id_Speciality;
-    }
-
-    public function setIdSpeciality(?DoctorUser $Id_Speciality): static
-    {
-        $this->Id_Speciality = $Id_Speciality;
+        $this->specialityContent = $specialityContent;
 
         return $this;
     }

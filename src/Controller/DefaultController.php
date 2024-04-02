@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Speciality;
 use App\Repository\DoctorUserRepository;
+use App\Repository\SpecialityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,14 +16,15 @@ class DefaultController extends AbstractController
 
    #[Route('/','home',methods: ['GET'])]
 #Ex. http://127.0.0.1:8000/
-        # en param -> la liste des medecins demandée dans le homepage.
-    public function home(): Response    {
+        # en param -> la liste des specialites demandée dans le homepage.
+    public function home()  {
 
         /*
          * tableau associatif  */
-        return $this->render('default/home.html.twig');
 
-        /**'doctorUser'=>$doctorUserRepository->findAll()*/
+        return $this->render('default/home.html.twig'
+        );
+
 
     }
 
@@ -32,6 +35,21 @@ class DefaultController extends AbstractController
         return $this->render('default/presentation.html.twig');
 
     }
+
+    #[Route('/page/specialites.html.twig', methods: ['GET'])]
+    #Ex. http:://127.0.0.1/nosservices/specialites
+    public function specialites():Response
+       {
+
+
+
+        // Passer les données à un template Twig pour affichage
+        return $this->render('default/specialites.html.twig');
+
+
+
+    }
+
     #[Route('/page/medecins.html.twig', methods: ['GET'])]
     #Ex. http://127.0.0.1:8000/nosservices/medecins
     public function medecins(): Response
@@ -58,6 +76,10 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/posologie.html.twig');
 
+    }
+
+    private function getDoctrine()
+    {
     }
 
 }

@@ -28,19 +28,15 @@ class MedicalReport
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: DoctorUser::class, mappedBy: 'medicalReport')]
-    private Collection $doctorUsers;
-
     #[ORM\ManyToOne(inversedBy: 'medicalReports')]
     private ?Prescription $prescription = null;
 
-    #[ORM\OneToMany(targetEntity: Appointment::class, mappedBy: 'medicalReport')]
-    private Collection $appointment;
+    #[ORM\ManyToMany(targetEntity: Appointment::class, mappedBy: 'medicalReport')]
+    private Collection $appointments;
 
     public function __construct()
     {
-        $this->doctorUsers = new ArrayCollection();
-        $this->appointment = new ArrayCollection();
+        $this->appointments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,33 +92,6 @@ class MedicalReport
         return $this;
     }
 
-    /**
-     * @return Collection<int, DoctorUser>
-     */
-    public function getDoctorUsers(): Collection
-    {
-        return $this->doctorUsers;
-    }
-
-    public function addDoctorUser(DoctorUser $doctorUser): static
-    {
-        if (!$this->doctorUsers->contains($doctorUser)) {
-            $this->doctorUsers->add($doctorUser);
-            $doctorUser->addMedicalReport($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDoctorUser(DoctorUser $doctorUser): static
-    {
-        if ($this->doctorUsers->removeElement($doctorUser)) {
-            $doctorUser->removeMedicalReport($this);
-        }
-
-        return $this;
-    }
-
     public function getPrescription(): ?Prescription
     {
         return $this->prescription;
@@ -138,16 +107,16 @@ class MedicalReport
     /**
      * @return Collection<int, Appointment>
      */
-    public function getAppointment(): Collection
+    public function getAppointments(): Collection
     {
-        return $this->appointment;
+        return $this->appointments;
     }
 
     public function addAppointment(Appointment $appointment): static
     {
-        if (!$this->appointment->contains($appointment)) {
-            $this->appointment->add($appointment);
-            $appointment->setMedicalReport($this);
+        if (!$this->appointments->contains($appointment)) {
+            $this->appointments->add($appointment);
+            $appointment->addMedicalReport($this);
         }
 
         return $this;
@@ -155,11 +124,8 @@ class MedicalReport
 
     public function removeAppointment(Appointment $appointment): static
     {
-        if ($this->appointment->removeElement($appointment)) {
-            // set the owning side to null (unless already changed)
-            if ($appointment->getMedicalReport() === $this) {
-                $appointment->setMedicalReport(null);
-            }
+        if ($this->appointments->removeElement($appointment)) {
+            $appointment->removeMedicalReport($this);
         }
 
         return $this;

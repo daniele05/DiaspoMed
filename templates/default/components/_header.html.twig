@@ -19,7 +19,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link text-info dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Nos Services</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item " href="#">Nos Spécialités</a>
+                        <a class="dropdown-item text-info" href="{{ path('app_default_specialites') }}"> Spécialités
+                            <ul>
+                                <li><a class="dropdown-item" href="[{{ '/specialites/orthopedie.html.twig' }}">Othopédie</a></li>
+                                <li><a class="dropdown-item" href="#">Pédiatrie</a></li>
+                                <li><a class="dropdown-item" href="#">Othophonie</a></li>
+                            </ul>
+
+                        </a>
                         <a class="dropdown-item text-info" href="{{ path('app_default_medecins') }}">Médécins</a>
                         <a class="dropdown-item text-info" href="{{ path('app_default_videoconsultation') }}">Vidéo Consultation</a>
                         <a class="dropdown-item text-info" href="{{ path('app_default_posologie') }}">Posologie</a>
@@ -27,18 +34,15 @@
                         {% if app.user %}
                             <a class="dropdown-item text-info" href="{{ path('app_logout')}}">Déconnexion</a>
                         {% else %}
-                            <a class="dropdown-item text-info" href="{{ path('/app_login') }}">Connexion</a>
+                            <a class="dropdown-item text-info" href="{{ path('app_login') }}">Connexion</a>
                             <a class="dropdown-item text-info" href="{{ path('app_user_register') }}">Inscription</a>
                         {% endif %}
                     </div>
                 </li>
             </ul>
-            <form class="d-flex m-3" >
-                <label>
-                    <input class="form-control text-info me-sm-2" type="search" placeholder="Search">
-                </label>
-                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <div class="d-flex m-3" >
+                <button type="button" class="btn btn-info">Prendre rdv</button>
+            </div>
         </div>
     </div>
 </nav>

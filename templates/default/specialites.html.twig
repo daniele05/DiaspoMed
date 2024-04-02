@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} ici ma Page Spécialités {% endblock %}
+
+
+{% block body %}
+
+    <div class="text-center mb-4">
+        <h3 class="display-5">Nos  <span class="text-info">Spécialités</span></h3>
+    </div>
+<!--Section Cards specialites-->
+    <div class="container">
+        <div class="row  m-3">
+
+            <div class="col-sm text-center">
+                <div class="card  border-2 border-info" >
+                    <img class="card-img-top" src="{{ asset('assets/images/pediatrie.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="text-info">Pédiatrie</span></h5>
+                        <p>orem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" class="btn btn-info">Encore + </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="card-img-top" src="{{ asset('assets/images/orthophonie.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="text-info">Orthophonie</span></h5>
+                        <p>orem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" class="btn btn-info">Encore + </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm text-center">
+                <div class="card h-100 border-2 border-info">
+                    <img class="card-img-top" src="{{ asset('assets/images/othopedie.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="text-info">Orthopédie</span></h5>
+                        <p>orem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" class="btn btn-info">Encore + </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+

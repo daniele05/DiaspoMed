@@ -13,14 +13,17 @@ class TypeOfActs
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private ?string $actName = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'typeOfActs')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Appointment $appointment = null;
+
+
 
     public function getId(): ?int
     {
@@ -44,7 +47,7 @@ class TypeOfActs
         return $this->price;
     }
 
-    public function setPrice(?int $price): static
+    public function setPrice(int $price): static
     {
         $this->price = $price;
 
@@ -62,4 +65,5 @@ class TypeOfActs
 
         return $this;
     }
+
 }

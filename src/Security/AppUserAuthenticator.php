@@ -2,6 +2,8 @@
 
 namespace App\Security;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +27,24 @@ class AppUserAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
+    public function login(Request $request, EntityManagerInterface $entityManager)
+    {
+        // Créer une nouvelle instance de l'entité User
+        $user = new User();
+
+        // Définir une valeur par défaut pour le champ fone_user
+        $user->setFontUser();
+
+        // Valider les données du formulaire, authentifier l'utilisateur, etc.
+
+        // Enregistrer l'utilisateur en base de données
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        // Rediriger l'utilisateur vers une page appropriée
+        return $this->RedirectToRoute('home');
+    }
+    
 
     public function authenticate(Request $request): Passport
     {
@@ -57,4 +77,6 @@ class AppUserAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+
 }

@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\AppointmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
@@ -16,41 +15,27 @@ class Appointment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $scheduledDate = null;
-
     #[ORM\Column(length: 255)]
     private ?string $place = null;
 
-    #[ORM\ManyToOne(inversedBy: 'appointment')]
-    private ?MedicalReport $medicalReport = null;
-
-    #[ORM\ManyToOne(inversedBy: 'appointment')]
-    private ?PatientUser $patientUser = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $scheduledDate = null;
 
     #[ORM\OneToMany(targetEntity: TypeOfActs::class, mappedBy: 'appointment')]
     private Collection $typeOfActs;
 
+    #[ORM\ManyToMany(targetEntity: MedicalReport::class, inversedBy: 'appointments')]
+    private Collection $medicalReport;
+
     public function __construct()
     {
         $this->typeOfActs = new ArrayCollection();
+        $this->medicalReport = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getScheduledDate(): ?\DateTimeInterface
-    {
-        return $this->scheduledDate;
-    }
-
-    public function setScheduledDate(\DateTimeInterface $scheduledDate): static
-    {
-        $this->scheduledDate = $scheduledDate;
-
-        return $this;
     }
 
     public function getPlace(): ?string
@@ -65,26 +50,14 @@ class Appointment
         return $this;
     }
 
-    public function getMedicalReport(): ?MedicalReport
+    public function getScheduledDate(): ?\DateTimeImmutable
     {
-        return $this->medicalReport;
+        return $this->scheduledDate;
     }
 
-    public function setMedicalReport(?MedicalReport $medicalReport): static
+    public function setScheduledDate(\DateTimeImmutable $scheduledDate): static
     {
-        $this->medicalReport = $medicalReport;
-
-        return $this;
-    }
-
-    public function getPatientUser(): ?PatientUser
-    {
-        return $this->patientUser;
-    }
-
-    public function setPatientUser(?PatientUser $patientUser): static
-    {
-        $this->patientUser = $patientUser;
+        $this->scheduledDate = $scheduledDate;
 
         return $this;
     }
@@ -115,6 +88,30 @@ class Appointment
                 $typeOfAct->setAppointment(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MedicalReport>
+     */
+    public function getMedicalReport(): Collection
+    {
+        return $this->medicalReport;
+    }
+
+    public function addMedicalReport(MedicalReport $medicalReport): static
+    {
+        if (!$this->medicalReport->contains($medicalReport)) {
+            $this->medicalReport->add($medicalReport);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicalReport(MedicalReport $medicalReport): static
+    {
+        $this->medicalReport->removeElement($medicalReport);
 
         return $this;
     }

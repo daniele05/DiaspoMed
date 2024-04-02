@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UserType extends AbstractType
 {
     /*
-     *  permet de construire le form en s aidant du builder dans symfony chaq champ corresponda a tous les types
+     *  permet de construire le form en s aidant du builder dans symfony chaq champ correspond  les types
+     * le mom des champs correspond au propriete de l entite
      **/
 
 
@@ -25,11 +27,12 @@ class UserType extends AbstractType
             ->add('password',PasswordType::class, [ 'label' => 'Mot de passe'])
             ->add('first_Name',TextType::class, [ 'label' => 'Prénom'])
             ->add('last_Name', TextType::class , [ 'label' => 'Nom'])
-            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer'])
-        ;
-    }
+            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
+
+         }
+
     /**
-     *
+     *data de l user
      * */
 
     public function configureOptions(OptionsResolver $resolver): void

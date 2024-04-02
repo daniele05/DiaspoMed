@@ -4,16 +4,18 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class UserController extends AbstractController
 {
     #[Route('/inscription.html')]
-    public function register(Request $request, EntityManagerInterface $manager)
+    public function register(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager)
     {
         #creation user vide
         # il sera rempli par la suite avec les donnees de notre visiteur
@@ -49,11 +51,11 @@ class UserController extends AbstractController
             $manager->flush();
 
             #Notification
-            $this->addFlash('success', 'Féliciation, vous pouvez vous connecter.');
+            $this->addFlash('success', 'Féliciations, vous pouvez vous connecter.');
             # stockage en session une fois affichée , elle est supprimé du navigateur une fois actualisée.
 
             # Redirection
-            return $this->redirectToRoute('app_default_home');
+            return $this->redirectToRoute('app_login');
 
         }
 

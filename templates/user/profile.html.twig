@@ -1,73 +1,62 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} {
 {% block body %}
+    <div class="container">
+        You're logged in as {{ app.user.userIdentifier }}.
+        <div><h2>Bienvenue Harold</h2></div>
 
-    <div class="container" >
         <h3 class="ml-5">Mon profile</h3>
-            <!-- Informations personnelles -->
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Nom, prénom, etc. -->
-                </div>
-                <div class="col-md-6">
-                    <!-- Photo de profil -->
-                </div>
-            </div>
+        <!-- Informations personnelles -->
 
-            <!-- Historique des rendez-vous -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Historique des rendez-vous -->
-                </div>
+        <div class="informations">
+            <div class="col-7">
+                <img src="{{ asset('assets/images/ekonda.jpg') }}" class="rounded float-start" alt="ekonda">
             </div>
-
-            <!-- Prochain rendez-vous -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Prochain rendez-vous -->
-                </div>
+            <div class="prenom">
+                <label for="prenom">Prénom:</label>
+                <span id="prenom">John</span>
             </div>
-
-            <!-- Médecins favoris -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Médecins favoris -->
-                </div>
+            <div class="nom">
+                <label for="nom">Nom:</label>
+                <span id="nom">Doe</span>
             </div>
-
-            <!-- Notes médicales -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Notes médicales -->
-                </div>
+            <div class="adresse">
+                <label for="adresse">Adresse:</label>
+                <span id="adresse">123 Rue de la Liberté</span>
             </div>
-
-            <!-- Préférences de notification -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Préférences de notification -->
-                </div>
-            </div>
-
-            <!-- Modifier le profil -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Modifier le profil -->
-                </div>
-            </div>
-
-            <!-- Déconnexion -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Déconnexion -->
-                </div>
+            <div class="telephone">
+                <label for="telephone">Téléphone:</label>
+                <span id="telephone">0123456789</span>
             </div>
         </div>
+        <!-- Historique des rendez-vous -->
+        <div class="anciens-rendez-vous">
+            <h3>Anciens rendez-vous</h3>
+            <div class="rendez-vous-item">
+                <p>Date: <span>2023-12-28</span></p>
+                <p>Heure: <span>10:00</span></p>
+                <p>Médecin: <span>Dr. Smith</span></p>
+                <p>Lieu: <span>Cabinet médical</span></p>
+            </div>
+            <!-- Autres anciens rendez-vous -->
+        </div>
+
+        <div class="futurs-rendez-vous">
+            <h3>Futurs rendez-vous</h3>
+            <div class="rendez-vous-item">
+                <p>Date: <span>2024-04-02</span></p>
+                <p>Heure: <span>15:30</span></p>
+                <p>Médecin: <span>Dr. Johnson</span></p>
+                <p>Lieu: <span>Hôpital général</span></p>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
 
-{% block title %}
+
 
 {% endblock %}
 

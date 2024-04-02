@@ -8,9 +8,11 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "user_type",type: "string")]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+
+
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -19,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    private ?string $email = null;
+    private? string $email= null ;
 
     /**
      * @var list<string> The user roles
@@ -39,16 +41,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-    #[ORM\Column]
-    private ?int $foneUser = null;
+    #[ORM\Column(nullable: true)]
+    private ?string $birthDate = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
+    private ?string $RPPSNumber = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $CvUser = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $phoneNumber = null;
+
+    #[ORM\Column(nullable: true)]
     private ?string $address = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
 
@@ -150,14 +161,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFoneUser(): ?int
+    public function getBirthDate(): ?string
     {
-        return $this->foneUser;
+        return $this->birthDate;
     }
 
-    public function setFoneUser(int $foneUser): static
+    public function setBirthDate(string $birthDate): static
     {
-        $this->foneUser = $foneUser;
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getRPPSNumber(): ?int
+    {
+        return $this->RPPSNumber;
+    }
+
+    public function setRPPSNumber(int $RPPSNumber): static
+    {
+        $this->RPPSNumber = $RPPSNumber;
+
+        return $this;
+    }
+
+
+    public function getCvUser(): ?string
+    {
+        return $this->CvUser;
+    }
+
+    public function setCvUser(string $CvUser): static
+    {
+        $this->CvUser = $CvUser;
+
+        return $this;
+    }
+    public function getPhoneNumber(): ?int
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(int $phoneNumber): static
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -169,7 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setAddress(string $address): static
     {
-        $this->foneUser = $address;
+        $this->address = $address;
 
         return $this;
     }
