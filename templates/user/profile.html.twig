@@ -1,62 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {
+{% block title %}Ici ma Page Profile {% endblock %}
 {% block body %}
-    <div class="container">
-        You're logged in as {{ app.user.userIdentifier }}.
-        <div><h2>Bienvenue Harold</h2></div>
+<div class="grid xs1 sm2">
+    <div class="grid xs3">
+        <div class="col-xs3"><img src="{{ asset('assets/images/ekonda.jpg') }}" alt="ekonda"></div>
+        <div>
+            <h4>Mes informations</h4>
+            <form method="post">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="firstname" value="{{ user.firstname }}" required>
+                <input type="text" id="userlastname" name="lastname" value="{{ user.lastname }}" required>
 
-        <h3 class="ml-5">Mon profile</h3>
-        <!-- Informations personnelles -->
+                <label for="email">email:</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
 
-        <div class="informations">
-            <div class="col-7">
-                <img src="{{ asset('assets/images/ekonda.jpg') }}" class="rounded float-start" alt="ekonda">
-            </div>
-            <div class="prenom">
-                <label for="prenom">Prénom:</label>
-                <span id="prenom">John</span>
-            </div>
-            <div class="nom">
-                <label for="nom">Nom:</label>
-                <span id="nom">Doe</span>
-            </div>
-            <div class="adresse">
-                <label for="adresse">Adresse:</label>
-                <span id="adresse">123 Rue de la Liberté</span>
-            </div>
-            <div class="telephone">
-                <label for="telephone">Téléphone:</label>
-                <span id="telephone">0123456789</span>
-            </div>
+            </form>
         </div>
-        <!-- Historique des rendez-vous -->
-        <div class="anciens-rendez-vous">
-            <h3>Anciens rendez-vous</h3>
-            <div class="rendez-vous-item">
-                <p>Date: <span>2023-12-28</span></p>
-                <p>Heure: <span>10:00</span></p>
-                <p>Médecin: <span>Dr. Smith</span></p>
-                <p>Lieu: <span>Cabinet médical</span></p>
-            </div>
-            <!-- Autres anciens rendez-vous -->
-        </div>
+        <div class="appointments">
+            <h2>Mes rendez-vous</h2>
 
-        <div class="futurs-rendez-vous">
-            <h3>Futurs rendez-vous</h3>
-            <div class="rendez-vous-item">
-                <p>Date: <span>2024-04-02</span></p>
-                <p>Heure: <span>15:30</span></p>
-                <p>Médecin: <span>Dr. Johnson</span></p>
-                <p>Lieu: <span>Hôpital général</span></p>
+            <div class="appointments-past">
+                <h2>Rendez-vous passés</h2>
+                <ul>
+                    {% for appointment in pastAppointments %}
+                        <li>{{ appointment.date|date('d/m/Y') }} - {{ appointment.time|date('H:i') }} -{{ appointment.doctor }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
 
+            <div class="appointments-futurs">
+                <h2>Rendez-vous futurs</h2>
+                <ul>
+                    {% for appointment in futureAppointments %}
+                        <li>{{ appointment.date|date('d/m/Y') }} - {{ appointment.time|date('H:i') }} - {{ appointment.doctor }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="appointments-now">
+                <h2>Rendez-vous du jour</h2>
+                <ul>
+                    {% for appointment in currentAppointments %}
+                        <li>{{ appointment.date|date('d/m/Y') }} - {{ appointment.time|date('H:i') }} - {{ appointment.doctor }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+        <div>
+            <h4>Mes documents</h4>
+        </div>
     </div>
+<main>
+    <!-- Code here the main content -->
+    <button data-target="example-sidenav"
+            class="btn rounded-1 press amaranth dark-1 hide-md-up">
+        Open sidenav
+    </button>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axentix@2.4.0/dist/axentix.min.js"></script>
+{% block javascript %}{% endblock %}
+<script>var sidenav= new Sidenav('#example-sidenav');</script>
 
 {% endblock %}
 
 
-
-{% endblock %}
 

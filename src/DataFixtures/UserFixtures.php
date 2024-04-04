@@ -10,19 +10,24 @@ use App\Repository\DoctorUserRepository;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         $u1= new User();
-        $u1->setFirstName("Harold")
-           ->setLastName("JEAN")
-           ->setEmail("jharold2001@yahoo.br")
-           ->setAddress("Teresina calle 23, 560099")
-           ->setPassword("Cocodepapa")
-           ->setFontUser(+5145453540)
-           ->setRoles(DoctorUser::class, PatientUser::class)
+        $u1 ->setPicture("Doct. Harold.jpg")
+            ->setFirstName("Harold")
+            ->setLastName("JEAN")
+            ->setBirthDate("2014/06/04")
+            ->setEmail("jharold2001@yahoo.br")
+             ->setPassword("Cocodepapa")
+             ->setRoles(['ROLE_ADMIN'])
+            ->setRPPSNumber(1565676790)
+            ->setCvUser("CV medical.jpg")
+            ->setPhoneNumber('0695172436')
+             ->setAddress("Teresina calle 23, 560099")
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
             -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2012-19-16))
         ;
@@ -31,11 +36,14 @@ class UserFixtures extends Fixture
         $u2= new User();
         $u2->setFirstName("Alex")
             ->setLastName("HAROLD")
+            ->setBirthDate("2014/06/12")
             ->setEmail("alharold2000@yahoo.br")
-            ->setAddress("Barcelona calle 30, 132456")
             ->setPassword("lebouboudemaman")
-            ->setFontUser(+5145453546)
-            ->setRoles(DoctorUser::class,PatientUser::class,AdminController::class)
+            ->setRoles(['ROLE_DOCTOR'])
+            ->setRPPSNumber(1565676790)
+            ->setCvUser("CV medical.jpg")
+            ->setPhoneNumber('0695172678')
+            ->setAddress("Teresina calle 23, 560099")
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
             -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2014-14-10))
         ;
@@ -45,10 +53,12 @@ class UserFixtures extends Fixture
         $u3->setFirstName("Axel")
             ->setLastName("AUREL")
             ->setEmail("jharold2005@yahoo.es")
-            ->setAddress("Sao Paolo calle 25, 560099")
             ->setPassword("lebebedemaman")
-            ->setFontUser(+5145453540)
-            ->setRoles(DoctorUser::class,PatientUser::class,AdminController::class)
+            ->setRoles(['ROLE_DOCTOR'])
+            ->setRPPSNumber(1565676790)
+            ->setCvUser("CV medical.jpg")
+            ->setPhoneNumber("0695172436")
+            ->setAddress("Sao Paolo calle 25, 560099")
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
             -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2012-14-10))
         ;
@@ -58,10 +68,12 @@ class UserFixtures extends Fixture
         $u4->setFirstName("Daniele")
             ->setLastName("KONDA")
             ->setEmail("kondaDaniele1978@yahoo.fr")
-            ->setAddress("Wissous 23 Rue des écoles, 560099")
             ->setPassword("Cocodepapa")
-            ->setFontUser(+5145453540)
-            ->setRoles(DoctorUser::class,PatientUser::class,AdminController::class)
+            ->setRoles(['ROLE_PATIENT'])
+            ->setRPPSNumber((int)null)
+            ->setCvUser(null)
+            ->setPhoneNumber("0695172436")
+            ->setAddress("Wissous 23 Rue des écoles, 560099")
             -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2010-05-19))
             -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2020-14-10))
         ;

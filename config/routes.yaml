@@ -8,3 +8,9 @@ controllers:
 #Speciality:
 #path:  '/Speciality/{specialityName}'
 #controller: 'App\Controller\SpecialityController::ShowSpeciality'
+
+
+#route de mon profile
+profile:
+    path: /user/profile
+    controller: App\Controller\UserController::profile

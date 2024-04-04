@@ -28,7 +28,6 @@ class UserType extends AbstractType
             ->add('first_Name',TextType::class, [ 'label' => 'Prénom'])
             ->add('last_Name', TextType::class , [ 'label' => 'Nom'])
             ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
-
          }
 
     /**

@@ -17,7 +17,7 @@ class UserSpeciality
     private ?int $idUser = null;
 
     #[ORM\Column]
-    private ?int $idspeciality = null;
+    private ?int $idSpeciality = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class UserSpeciality
         return $this;
     }
 
-    public function getIdspeciality(): ?int
+    public function getIdSpeciality(): ?int
     {
-        return $this->idspeciality;
+        return $this->idSpeciality;
     }
 
-    public function setIdspeciality(int $idspeciality): static
+    public function setIdSpeciality(int $idSpeciality): static
     {
-        $this->idspeciality = $idspeciality;
+        $this->idSpeciality = $idSpeciality;
 
         return $this;
     }

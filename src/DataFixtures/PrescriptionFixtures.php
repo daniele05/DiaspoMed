@@ -13,16 +13,16 @@ class PrescriptionFixtures extends Fixture
     {
         $p1 = new Prescription();
         $p1 -> setPrescriptionContent('public/assets/images/prescription.png')
-            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-05-18))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-07-10))
+            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-05-18'))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-07-10'))
             ;
         $manager->persist($p1);
 
 
         $p2 = new Prescription();
         $p2 -> setPrescriptionContent('public/assets/images/prescription.png')
-            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-05-19))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-12-10))
+            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-05-19'))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-12-10'))
 
         ;
         $manager->persist($p2);
@@ -30,8 +30,8 @@ class PrescriptionFixtures extends Fixture
 
         $p3 = new Prescription();
         $p3 -> setPrescriptionContent('public/assets/images/prescription.png')
-            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-06-18))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2023-11-10))
+            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-06-18'))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2023-11-10'))
 
         ;
         $manager->persist($p3);
@@ -39,8 +39,8 @@ class PrescriptionFixtures extends Fixture
 
         $p4 = new Prescription();
         $p4 -> setPrescriptionContent('public/assets/images/prescription.png')
-            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2013-05-10))
-            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', 2013-07-12))
+            -> setCreatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2013-05-10'))
+            -> setUpdatedAt(DateTimeImmutable::createFromFormat('Y-m-d', '2013-07-12'))
         ;
         $manager->persist($p1);
         // $product = new Product();

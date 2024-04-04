@@ -13,7 +13,7 @@ class AppointmentFixtures extends Fixture
     {
         $ap1 = new Appointment();
         $ap1 ->setScheduledDate(DateTimeImmutable::createFromFormat('Y-m-d','2013-06-19'))
-             ->setPlace('5 Rue de lapointe 75014 Paris')
+             ->setPlace('5 Rue de Lapointe 75014 Paris')
 
             ;
         $manager->persist($ap1);
@@ -26,7 +26,7 @@ class AppointmentFixtures extends Fixture
 
         $ap3 = new Appointment();
         $ap3 -> setScheduledDate(DateTimeImmutable::createFromFormat('Y-m-d','2012-01-02'))
-            ->setPlace('5 Rue de Archide 75010 Paris')
+            ->setPlace('5 Rue de Archive 75010 Paris')
         ;
         $manager->persist($ap3);
 

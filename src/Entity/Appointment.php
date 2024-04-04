@@ -69,7 +69,6 @@ class Appointment
     {
         return $this->typeOfActs;
     }
-
     public function addTypeOfAct(TypeOfActs $typeOfAct): static
     {
         if (!$this->typeOfActs->contains($typeOfAct)) {

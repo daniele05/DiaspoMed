@@ -11,9 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserController extends AbstractController
 {
+    # methode inscription
     #[Route('/inscription.html')]
     public function register(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $manager)
     {
@@ -65,21 +67,40 @@ class UserController extends AbstractController
         ]);
     }
 
+    # creation de la methode profil
 
-    #[Route('/profile.html')]
-    public function profile(){
-        return $this->render('user/profile.html.twig');
+    #[Route('user/profile', name: "user/profile")]
+    public function profile(UserInterface $user): Response
+    {
+        #recuperation du user connecté avec getuser
+         $this->getUser();
+
+
+        if(in_array('ROLE_PATIENT',$user->getRoles())){
+            return $this->render('user/profile.html.twig',[
+                'controller_name' => 'UserController'
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
+
+        }
+
+
 
     }
 
-    #[Route('/user/modifyPassword.html')]
-    public function modifyPassword(){
+    #[Route('user/modifyPassword.html')]
+    public function modifyPassword(): Response
+    {
         return new Response();
 
     }
 
     #[Route('/user/modifyPicture.html')]
-    public function modifyPicture(){
+    public function modifyPicture(): Response
+    {
         return new Response();
     }
+
+
 }

@@ -20,12 +20,12 @@ class MedicalReport
     private ?string $medicalContent = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $attachements = null;
+    private ?string $attachments = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'medicalReports')]
@@ -56,14 +56,14 @@ class MedicalReport
         return $this;
     }
 
-    public function getAttachements(): ?string
+    public function getAttachments(): ?string
     {
-        return $this->attachements;
+        return $this->attachments;
     }
 
-    public function setAttachements(string $attachements): static
+    public function setAttachments(string $attachments): static
     {
-        $this->attachements = $attachements;
+        $this->attachments = $attachments;
 
         return $this;
     }
