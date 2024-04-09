@@ -5,9 +5,9 @@ controllers:
     type: attribute
 
 #specialite card en detail
-#Speciality:
-#path:  '/Speciality/{specialityName}'
-#controller: 'App\Controller\SpecialityController::ShowSpeciality'
+Speciality:
+    path:  '/page/showSpeciality/{id}'
+    controller: 'App\Controller\DefaultController::showSpeciality'
 
 
 #route de mon profile

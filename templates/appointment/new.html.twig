@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Rdv{% endblock %}
+
+{% block body %}
+    <h3>Créer un nouveau Rdv</h3>
+
+    {{ include('appointment/_form.html.twig') }}
+
+    <a href="{{ path('app_appointment_index') }}">Retour à ma liste Rdv</a>
+{% endblock %}

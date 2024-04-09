@@ -16,7 +16,7 @@ class Speciality
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $specialityImage = null;
 
     #[ORM\Column(length: 150)]
     private ?string $specialityName = null;
@@ -29,14 +29,14 @@ class Speciality
         return $this->id;
     }
 
-    public function getImage(): ?string
+    public function getSpecialityImage(): ?string
     {
-        return $this->image;
+        return $this->specialityImage;
     }
 
-    public function setImage(string $image): static
+    public function setSpecialityImage(string $specialityImage): static
     {
-        $this->image = $image;
+        $this->specialityImage = $specialityImage;
 
         return $this;
     }

@@ -42,7 +42,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         # Si mon formulaire a été soumis par l'utilisateur.
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             # Encodage du mot passe
             $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
@@ -63,31 +63,31 @@ class UserController extends AbstractController
 
         # Passage du formulaire à la vue
         return $this->render('user/register.html.twig', [
-            'form' => $form
+            'form' => $form->createView()
         ]);
     }
 
     # creation de la methode profil
 
-    #[Route('user/profile', name: "user/profile")]
-    public function profile(UserInterface $user): Response
-    {
+    ##[Route('user/profile', name: "user/profile")]
+  #  public function profile(UserInterface $user): Response
+    #{
         #recuperation du user connecté avec getuser
-         $this->getUser();
+      #   $this->getUser();
 
 
-        if(in_array('ROLE_PATIENT',$user->getRoles())){
-            return $this->render('user/profile.html.twig',[
-                'controller_name' => 'UserController'
-            ]);
-        }else{
-            return $this->redirectToRoute('app_login');
+       # if(in_array('ROLE_PATIENT',$user->getRoles())){
+          #  return $this->render('user/profile.html.twig',[
+           #     'controller_name' => 'UserController'
+          #  ]);
+       # }else{
+         ##   return $this->redirectToRoute('app_login');
 
-        }
+        #}
 
 
 
-    }
+   # }
 
     #[Route('user/modifyPassword.html')]
     public function modifyPassword(): Response
