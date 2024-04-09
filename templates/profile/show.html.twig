@@ -1,20 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur{% endblock %}
+{% block title %}
+    {{ user.firstName }} {{ user.lastName }} - Profil
+{% endblock %}
 
 {% block body %}
-    <h3>Utilisateur</h3>
+<h3>Profil de {{ user.firstName }} {{ user.lastName }}</h3>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ user.picture }}</td>
-            </tr>
             <tr>
                 <th>FirstName</th>
                 <td>{{ user.firstName }}</td>
@@ -35,10 +32,13 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
+            {% if 'ROLE_ADMIN' in user.roles %}
             <tr>
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
+            {% endif %}
+            {% if 'ROLE_DOCTOR' in user.roles %}
             <tr>
                 <th>RPPSNumber</th>
                 <td>{{ user.RPPSNumber }}</td>
@@ -47,6 +47,7 @@
                 <th>CvUser</th>
                 <td>{{ user.CvUser }}</td>
             </tr>
+            {% endif %}
             <tr>
                 <th>PhoneNumber</th>
                 <td>{{ user.phoneNumber }}</td>
@@ -66,6 +67,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_profile_edit')">Modifier</a>
+    <a href="{{ path('app_profile_edit')}}">Modifier</a>
 
 {% endblock %}

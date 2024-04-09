@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -48,6 +49,21 @@ class UserController extends AbstractController
             $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
 
+            // uploaded image
+            $pictureFile = $form->get('image')->getData();
+
+            // verif objet uploded
+            if($pictureFile) {
+               // Generer un nom de fichier unique
+                $newFilename = uniqid().'.'.$pictureFile->guessExtension();
+                // Déplacer le fichier dans le repertoire ou les iamges sont stockées
+                $pictureFile->move(
+                   $this->getParameter('kernel.project_dir').'/public/assets/images',
+                    $newFilename
+                );
+
+            }
+
             # Sauvegarde dans la BDD
             $manager->persist($user);
             $manager->flush();
@@ -67,27 +83,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    # creation de la methode profil
-
-    ##[Route('user/profile', name: "user/profile")]
-  #  public function profile(UserInterface $user): Response
-    #{
-        #recuperation du user connecté avec getuser
-      #   $this->getUser();
-
-
-       # if(in_array('ROLE_PATIENT',$user->getRoles())){
-          #  return $this->render('user/profile.html.twig',[
-           #     'controller_name' => 'UserController'
-          #  ]);
-       # }else{
-         ##   return $this->redirectToRoute('app_login');
-
-        #}
-
-
-
-   # }
 
     #[Route('user/modifyPassword.html')]
     public function modifyPassword(): Response

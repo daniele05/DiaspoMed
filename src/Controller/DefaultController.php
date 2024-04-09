@@ -40,9 +40,9 @@ class DefaultController extends AbstractController
     #Ex. http:://127.0.0.1/nosservices/cardSpeciality
     public function cardSpeciality(SpecialityRepository $specialityRepository):Response
        {
+
       // recuperartion de ttes mes specialites
            $specialities= $specialityRepository->findAll();
-
         // Passer les données à un template Twig pour affichage
         return $this->render('default/cardSpeciality.html.twig',  [
             'specialities' => $specialities

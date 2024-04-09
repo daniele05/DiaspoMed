@@ -8,6 +8,7 @@ use App\Form\UserProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,12 +16,29 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/profile')]
 class ProfileController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+          $this->security = $security;
+    }
+
     #[Route('/', name: 'app_profile_show', methods: ['GET'])]
     public function show(): Response
     {
+        // Recup user connecté
         $user= $this->getUser();
+        // verif si user est admin
+        $isAdmin = $this->security->isGranted('ROLE_ADMIN');
+        // verif si user est medecin
+        $isDoctor = $this->security->isGranted('ROLE_DOCTOR');
+        // verif si user est patient
+        $isPatient= $this->security->isGranted('ROLE_PATIENT');
         return $this->render('profile/show.html.twig', [
             'user' => $user,
+            'admin' => $isAdmin,
+            'isDoctor' => $isDoctor,
+            'isPatient' => $isPatient,
         ]);
     }
 
