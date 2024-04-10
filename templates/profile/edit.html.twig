@@ -3,9 +3,13 @@
 {% block title %}Modification Informations  Utlisateur{% endblock %}
 
 {% block body %}
-    <h3>Modification Informations</h3>
+<div class="container">
+    <h3 class="mb-3 pt-3">Modification de mon profil</h3>
+    <div class="container">
 
     {{ include('profile/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
 
-    <a href="{{ path('app_profile_show') }}">Retour au profile</a>
+   <button><a href="{{ path('app_profile_show') }}">Retour au profile</a></button>
+</div>
 {% endblock %}

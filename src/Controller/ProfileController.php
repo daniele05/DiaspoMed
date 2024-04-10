@@ -46,7 +46,10 @@ class ProfileController extends AbstractController
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+       // dd($user);
+        if ($user->getRoles()[0])
         $form = $this->createForm(UserProfileType::class, $user);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

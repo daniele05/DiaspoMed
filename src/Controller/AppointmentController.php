@@ -14,10 +14,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/appointment')]
 class AppointmentController extends AbstractController
 {
-    #[Route('/', name: 'app_appointment_index', methods: ['GET'])]
-    public function index(AppointmentRepository $appointmentRepository): Response
+    #[Route('/', name: 'app_appointment_show', methods: ['GET'])]
+    public function show(AppointmentRepository $appointmentRepository): Response
     {
-        return $this->render('appointment/index.html.twig', [
+
+        return $this->render('appointment_show.html.', [
             'appointments' => $appointmentRepository->findAll(),
         ]);
     }
@@ -33,7 +34,7 @@ class AppointmentController extends AbstractController
             $entityManager->persist($appointment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_appointment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_appointment_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('appointment/new.html.twig', [
@@ -42,15 +43,8 @@ class AppointmentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_appointment_show', methods: ['GET'])]
-    public function show(Appointment $appointment): Response
-    {
-        return $this->render('appointment/show.html.twig', [
-            'appointment' => $appointment,
-        ]);
-    }
 
-    #[Route('/{id}/edit', name: 'app_appointment_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit', name: 'app_appointment_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Appointment $appointment, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AppointmentType::class, $appointment);

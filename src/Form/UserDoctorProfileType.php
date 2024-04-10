@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserProfileType extends AbstractType
+class UserDoctorProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -18,10 +18,20 @@ class UserProfileType extends AbstractType
             ->add('lastName')
             ->add('birthDate')
             ->add('email')
+           ->add('password')
+//            ->add('roles')
+            ->add('RPPSNumber')
+            ->add('CvUser')
             ->add('phoneNumber')
             ->add('address')
-            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
-
+//            ->add('createdAt', null, [
+//                'widget' => 'single_text',
+//            ])
+//            ->add('updatedAt', null, [
+//                'widget' => 'single_text',
+//            ])
+        ->add('submit' ,SubmitType::class ,  [ 'label' => 'Envoyer'])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
