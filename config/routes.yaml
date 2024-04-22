@@ -4,6 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+ # route accueil
+app_homepage:
+    path: /
+    controller: 'App\Controller\DefaultController::home'
+
+
 #specialite card en detail
 Speciality:
     path:  '/page/showSpeciality/{id}'
@@ -12,5 +18,12 @@ Speciality:
 
 #route de mon profile
 profile:
-    path: /user/profile
-    controller: App\Controller\UserController::profile
+    path: '/user/profile'
+    controller: 'App\Controller\ProfileController::show'
+
+
+#route de mes rendz-vous
+app_appointment_show:
+    path: /appointment
+    controller: App\Controller\AppointmentController::show
+    methods: ['GET']

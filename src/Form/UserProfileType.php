@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserProfileType extends AbstractType
 {
@@ -18,6 +19,7 @@ class UserProfileType extends AbstractType
             ->add('lastName')
             ->add('birthDate')
             ->add('email')
+            ->add('password')
             ->add('phoneNumber')
             ->add('address')
             ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);

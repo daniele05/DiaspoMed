@@ -5,8 +5,19 @@
     <div class="container">
         <div class="row">
             <div class="col-6 mr-auto">
-                <h3 class="display-5 mb-4"><span class="text-info mr-3">Créez votre compte</span></h3>
+                <h3 class="display-5 mb-4">Créez votre <span class="text-info mr-3">compte</span></h3>
+
+
+
+                {# affichage formulaire#}
                 {{ form(form) }}
+
+                {# Afficher le champ "RPPSNumber" et champs "CvUser" uniquement si l'utilisateur est un docteur #}
+                {% if is_granted('ROLE_DOCTOR' )%}
+                    {{ form_row(form.RPPSNumber) }}
+                    {{ form_row(form.CvUser) }}
+                {% endif %}
+
             </div>
         </div>
     </div>

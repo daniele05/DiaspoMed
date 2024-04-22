@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Appointment;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,4 +46,14 @@ class AppointmentRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+// methode cree permettant de recuperer les info par un medecin en particulier
+    public function findAppointmentsByDoctor(User $doctor):array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.doctor = :doctor')
+            ->setParameter('doctor', $doctor)
+            ->getQuery()
+            ->getResult();
+    }
 }

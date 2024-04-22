@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\User1Type;
+#use App\Form\User1Type;
 use App\Form\UserProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/profile')]
 class ProfileController extends AbstractController
 {
-    private $security;
+    private  $security;
 
     public function __construct(Security $security)
     {
@@ -26,14 +26,25 @@ class ProfileController extends AbstractController
     #[Route('/', name: 'app_profile_show', methods: ['GET'])]
     public function show(): Response
     {
-        // Recup user connecté
-        $user= $this->getUser();
+        if (!$this->getUser()) {
+            // Rediriger vers la page de connexion ou afficher un message d'erreur
+            // Par exemple, vous pouvez rediriger vers la page de connexion avec:
+            // return $this->redirectToRoute('app_login');
+            // Ou afficher un message d'erreur et ne pas continuer le traitement
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
         // verif si user est admin
         $isAdmin = $this->security->isGranted('ROLE_ADMIN');
         // verif si user est medecin
         $isDoctor = $this->security->isGranted('ROLE_DOCTOR');
         // verif si user est patient
         $isPatient= $this->security->isGranted('ROLE_PATIENT');
+
+        // rendre le template avec les données de l utilisateur
         return $this->render('profile/show.html.twig', [
             'user' => $user,
             'admin' => $isAdmin,
@@ -63,5 +74,8 @@ class ProfileController extends AbstractController
             'form' => $form,
         ]);
     }
+ // filtre
+
+
 
 }

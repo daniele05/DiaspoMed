@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %} ici ma Page consultation {% endblock %}
+
+
+{% block body %}
+
+
+<div class="container contact  mb-4 pt-4 mt-3">
+    <div class="row">
+        <div class="cols-sm-6  mt-3 pt-3 p-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-info text-center">Contact </h5>
+                    <h6 class="text-center mt-3"><span class="text-dark">Siège social</span> </h6>
+                    <div class="row">
+
+                        <div class="col-2">
+                            <i class="material-icons pb-4">location_on</i>
+                        </div>
+                        <div class="col-10">
+
+                            <p class="card-text text-info">5 Calle de las flores<br>Sao Paolo <br> Brasil</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="material-icons">phone</i>
+                        </div>
+                        <div class="col-10">
+                            <p class="card-text text-info"> +55 456 56 78 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cols-sm-6 mt-3 pb-3 p-3 w-100">
+        <div class="card video-consultation border-1 ">
+            <div class="card-body">
+                <h5 class="card-title text-info text-center pb-2">Vidéo consultation</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6>Reception</h6>
+                        <video controls id="receiver-video" width="100%" height="100px"></video>
+                        <p>
+                            <button id="start" class="btn btn-info">Démarrer la conversation</button>
+                        </p>
+                        <label for="offer"></label><textarea id="offer" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 class="#">Envoi</h6>
+                        <video controls id="emitter-video" width="100%" height="100px"></video>
+                        <p>
+                            <button id="receive" class="btn btn-secondary">Recevoir la conversation</button>
+                        </p>
+                        <form id="incoming">
+                            <div class="form-group">
+                                <label>
+                                    <textarea class="form-control"></textarea>
+                                </label>
+                            </div>
+                            <p>
+                                <button type="submit">Enregistrer l'offre</button>
+                            </p>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('assets/simplePeer.js') }}"></script>
+    <script src="{{ asset('assets/app.js') }}"></script>
+{% endblock %}
+
+{%  endblock %}
+

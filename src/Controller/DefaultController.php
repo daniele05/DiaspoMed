@@ -16,21 +16,27 @@ class DefaultController extends AbstractController
 
    #[Route('/','home',methods: ['GET'])]
 #Ex. http://127.0.0.1:8000/
-        # en param -> la liste des specialites demandée dans le homepage.
-    public function home()  {
 
-        /*
-         * tableau associatif  */
-
+    public function home(): Response
+    {
         return $this->render('default/home.html.twig'
         );
 
+    }
+
+    #[Route('/page/mentionslegales.html.twig',methods: ['GET'])]
+    #Ex. http://127.0.0.1:8000/mentionslegales
+
+    public function mentionslegales(): Response
+    {
+        return $this->render('default/mentionslegales.html.twig'
+        );
 
     }
 
     #[Route('/page/presentation.html.', methods: ['GET'])]
     #Ex. http://127.0.0.1:8000/presentation
-    public function presentation()
+    public function presentation(): Response
     {
         return $this->render('default/presentation.html.twig');
 
@@ -79,15 +85,15 @@ class DefaultController extends AbstractController
 
     }
 
-    #[Route('/videoconsultation.html', methods: ['GET'])]
-    #Ex. http://127.0.0.1:8000/nosservices/videosonsulattion
-    public function videoconsultation(): Response
+    #[Route('/page/consultation.html.twig', methods: ['GET'])]
+    #Ex. http://127.0.0.1:8000/nosservices/consultation
+    public function consultation(): Response
     {
-        return $this->render('default/videoconsultation.html.twig');
+        return $this->render('default/consultation.html.twig');
 
     }
 
-    #[Route('/page/nosservices/posologie.html', methods: ['GET'])]
+    #[Route('/page/posologie.html.twig', methods: ['GET'])]
     #Ex. http://127.0.0.1:8000/nosservices/posologie
     public function posologie(): Response
     {
@@ -95,8 +101,5 @@ class DefaultController extends AbstractController
 
     }
 
-    private function getDoctrine()
-    {
-    }
 
 }
