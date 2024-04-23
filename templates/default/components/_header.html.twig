@@ -21,24 +21,56 @@
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_default_doctors') }}">
-                                <i class="fa fa-user-doctor"></i>
-                                Consultation en ligne
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_appointment_new') }}">
-                                <i class="fa fa-sign-in"></i>
-                                Connexion
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_appointment_new') }}">
-                                <i class="fa fa-user-plus"></i>
-                                Inscription
-                            </a>
-                        </li>
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_default_doctors') }}">
+                                    <i class="fa fa-user-doctor"></i>
+                                    Consultation en ligne
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">
+                                    <i class="fa fa-sign-in"></i>
+                                    Connexion
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_user_registerdoctor') }}">
+                                    <i class="fa fa-user-plus"></i>
+                                    Inscription Praticien
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_user_registerpatient') }}">
+                                    <i class="fa fa-user-plus"></i>
+                                    Inscription Patient
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Bonjour {{ app.user.firstName }} :
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_appointment_show') }}">
+                                    <i class="fa fa-calendar-alt"></i>
+                                    Consulter mes rendez-vous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_default_doctors') }}">
+                                    <i class="fa fa-user-doctor"></i>
+                                    Réserver une consultation en ligne
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">
+                                    <i class="fa fa-sign-out"></i>
+                                    Déconnexion
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

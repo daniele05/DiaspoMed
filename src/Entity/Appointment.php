@@ -16,13 +16,7 @@ class Appointment
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $content = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $place = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $scheduledDate = null;
@@ -30,11 +24,16 @@ class Appointment
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'appointments')]
     #[ORM\JoinColumn( nullable: false)]
     private $user;
+    
     #[ORM\OneToMany(targetEntity: TypeOfActs::class, mappedBy: 'appointment')]
     private Collection $typeOfActs;
 
     #[ORM\ManyToMany(targetEntity: MedicalReport::class, inversedBy: 'appointments')]
     private Collection $medicalReport;
+
+    #[ORM\ManyToOne(inversedBy: 'appointments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Doctor $doctor = null;
 
     public function __construct()
     {
@@ -45,19 +44,6 @@ class Appointment
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): static
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -71,17 +57,7 @@ class Appointment
 
         return $this;
     }
-    public function getPlace(): ?string
-    {
-        return $this->place;
-    }
 
-    public function setPlace(string $place): static
-    {
-        $this->place = $place;
-
-        return $this;
-    }
 
     public function getScheduledDate(): ?\DateTimeImmutable
     {
@@ -157,6 +133,18 @@ class Appointment
     public function removeMedicalReport(MedicalReport $medicalReport): static
     {
         $this->medicalReport->removeElement($medicalReport);
+
+        return $this;
+    }
+
+    public function getDoctor(): ?Doctor
+    {
+        return $this->doctor;
+    }
+
+    public function setDoctor(?Doctor $doctor): static
+    {
+        $this->doctor = $doctor;
 
         return $this;
     }

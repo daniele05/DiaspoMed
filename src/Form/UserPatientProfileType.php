@@ -22,6 +22,7 @@ class UserPatientProfileType extends AbstractType
          #   ->add('picture')
         /* ->add('picture', FileType::class, ['required'=> false])*/
          ->add('firstName', TextType::class, [
+             'label' => 'Nom',
              'constraints' => [
                  new Regex([
                      'pattern' => '/^[A-Za-z]+$/',
@@ -30,6 +31,7 @@ class UserPatientProfileType extends AbstractType
              ],
          ])
             ->add('lastName', TextType::class, [
+                'label' => 'Prénom',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Za-z]+$/',

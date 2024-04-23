@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Appointment;
+use App\Entity\Doctor;
 use App\Entity\User;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
@@ -12,6 +13,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/appointment')]
 class AppointmentController extends AbstractController
@@ -31,7 +33,7 @@ class AppointmentController extends AbstractController
     {
         // Récupérer l'utilisateur connecté ou un utilisateur spécifique (patient ou médecin)
         $user = $this->getUser();
-        if(!$user){
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
         /*// Vérifier si $user contient les informations attendues
@@ -54,18 +56,20 @@ class AppointmentController extends AbstractController
         ]);
     }
 
-  // nouveau rdv
-    #[Route('/appointments/new', name: 'app_appointment_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    // nouveau rdv
+    #[Route('/appointments/new/{id}', name: 'app_appointment_new', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_USER")]
+    public function new(Doctor $doctor, Request $request): Response
     {
-       // Récup utlistauer connecté
+        // Récup utlistauer connecté
         $user = $this->getUser();
 
         // Créer une nouvelle instance de rdv
         $appointment = new Appointment();
 
-        // Associer l utilisateur à ce rdv
+        // Associer l'utilisateur à ce rdv
         $appointment->setUser($user);
+        $appointment->setDoctor($doctor);
 
         // Creer le formulaire pour ajouter un nouveau rdv
         $form = $this->createForm(AppointmentType::class, $appointment);
@@ -76,8 +80,11 @@ class AppointmentController extends AbstractController
 
             // enregistrement du rdv dans la b2d
 
-             $this->entityManager->persist($appointment);
+            $this->entityManager->persist($appointment);
             $this->entityManager->flush();
+
+            $this->addFlash('success',
+                "Merci, votre rendez-vous avec Dr. {$doctor->getUser()->getFirstName()} {$doctor->getUser()->getLastName()} a bien été enregistré.");
 
             // Redirection vers page de rdv
             return $this->redirectToRoute('app_appointment_show');
@@ -85,19 +92,19 @@ class AppointmentController extends AbstractController
         // passer le form au template Twig pour affichage
         return $this->render('appointment/new.html.twig', [
             'form' => $form->createView(),
+            'doctor' => $doctor,
         ]);
     }
 
     #[Route('/edit/{id}', name: 'app_appointment_edit', methods: ['GET', 'POST'])]
-
     public function edit(Request $request, EntityManagerInterface $entityManager, AppointmentRepository $appointmentRepository, $id): Response
     {
         // Récupérer l'objet Appointment à éditer à partir de l'ID (par exemple)
         $appointment = $appointmentRepository->find($id); // Assurez-vous de remplacer $id par l'ID réel de l'Appointment à éditer
 
         // verification si l objet appointment est bien defini
-        if(!$appointment){
-            throw $this->createNotFoundException('No appointment found for id '.$id);
+        if (!$appointment) {
+            throw $this->createNotFoundException('No appointment found for id ' . $id);
         }
         // Alors , Créer le formulaire en utilisant l'objet Appointment récupéré
         $form = $this->createForm(AppointmentType::class, $appointment);
@@ -115,7 +122,6 @@ class AppointmentController extends AbstractController
     }
 
 
-
     #[Route('/delete/{id}', name: 'app_appointment_delete', methods: ['DELETE'])]
     public function delete(EntityManagerInterface $entityManager, Appointment $appointment, AppointmentRepository $appointmentRepository, $id): Response
     {
@@ -125,15 +131,15 @@ class AppointmentController extends AbstractController
         $appointment = $appointmentRepository->find($id); // Assurez-vous de remplacer $id par l'ID réel de l'Appointment à éditer
 
         // verification si l objet appointment est bien defini
-        if(!$appointment){
-            throw $this->createNotFoundException('No appointment found for id '.$id);
+        if (!$appointment) {
+            throw $this->createNotFoundException('No appointment found for id ' . $id);
         }
 
         // Suppression de l objet appointment
         $entityManager->remove($appointment);
         $entityManager->flush();
 
-      // Redirection vers la liste des rdv après suppression
+        // Redirection vers la liste des rdv après suppression
         return $this->redirectToRoute('app_appointment_show');
     }
 }

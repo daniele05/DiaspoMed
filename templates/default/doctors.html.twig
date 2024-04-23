@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} ici ma Page Médécins {% endblock %}
+{% block title %}Consultation en ligne{% endblock %}
 
 {% block body %}
     <div class="text-center mb-4">
@@ -41,10 +41,7 @@
     </div>
 
 
-
-
-
-    <<!-- Ajoutez cartes pour médecins ici -->
+    <!-- Ajoutez cartes pour médecins ici -->
 
 
     <div class="container mb-5">
@@ -67,7 +64,7 @@
                         <p class="card-text">Appelez-moi au <a href="tel:{{ doctor.user.phoneNumber }}">{{ doctor.user.phoneNumber }}</a>.</p>
                         <!--Prendre rdv -->
                         <div>
-                            <a href="#" class="btn btn-info">Prendre un rendez-vous</a>
+                            <a href="{{ path('app_appointment_new', {'id' : doctor.id}) }}" class="btn btn-info">Prendre un rendez-vous</a>
                         </div>
                     </div>
                 </div>

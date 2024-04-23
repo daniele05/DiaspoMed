@@ -8,10 +8,12 @@
         <!--Jumbotron-->
         <div class="row">
             <div class="jumbotron col-7 mr-lg-5 mr-5">
-                <h1 class="display-5 text-info">Umla</h1>
+                <h1 class="display-2 text-info">Umla</h1>
+
                 {% if app.user %}
-                    <h3>Bonjour{{ app.user.lastName }},<br></h3>
+                    <h3 class="display-6">Bonjour {{ app.user.lastName }},</h3>
                 {% endif %}
+
                 <p class="lead">
                     Chez Umla, convaincus qu'une main puisse laver une autre , nous sommes à votre écoute 24/7 tout en
                     vous offrant une solution de gestion de patients qui est à la fois innovante et intuitive pour

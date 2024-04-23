@@ -35,6 +35,7 @@ class UserDoctorProfileType extends AbstractType
         #])
           /*  ->add('picture', FileType::class, ['required'=> false])*/
             ->add('firstName', TextType::class, [
+                'label' => 'Prénom',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Za-z]+$/',
@@ -43,6 +44,7 @@ class UserDoctorProfileType extends AbstractType
                 ],
             ])
             ->add('lastName' , TextType::class, [
+                'label' => 'Nom',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[A-Za-z]+$/',
@@ -112,7 +114,7 @@ class UserDoctorProfileType extends AbstractType
                 ]
             ])
 //
-        ->add('submit' ,SubmitType::class ,  [ 'label' => 'Send'])
+        ->add('submit' ,SubmitType::class ,  [ 'label' => 'Créer mon compte'])
         ;
     }
 

@@ -22,33 +22,32 @@ class AppointmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z0-9\s]+$/',
-                        'message' => 'The title should only contain letters, numbers, and spaces.'
-                    ]),
-                ],
-            ])
+//            ->add('title', TextType::class, [
+//                'constraints' => [
+//                    new NotBlank(),
+//                    new Regex([
+//                        'pattern' => '/^[a-zA-Z0-9\s]+$/',
+//                        'message' => 'The title should only contain letters, numbers, and spaces.'
+//                    ]),
+//                ],
+//            ])
             ->add('content', TextType::class, [
+                'label' => 'Motif de la consultation',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
-            ->add('place', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ],
-            ])
+//            ->add('place', TextType::class, [
+//                'constraints' => [
+//                    new NotBlank(),
+//                ],
+//            ])
             ->add('scheduledDate', DateTimeType::class, [
-
-
-
+                'label' => 'Date de consultation souhaitée',
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Create Appointment',
-                'attr' => ['class' => 'btn btn-primary'],
+                'label' => 'Soumettre ma demande de réservation',
+                'attr' => ['class' => 'btn w-100 btn-primary'],
             ]);
     }
 

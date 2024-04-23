@@ -6,11 +6,11 @@
     <div class="container mb-4 pt-4 mt-3">
         <div class="row">
             <div class="col-6 mt-3 pt-3 p-3">
-                <h3>Tes rendez-vous, {{ user.firstName }} {{ user.lastName }} :</h3>
+                <h3>Bonjour {{ user.firstName }} {{ user.lastName }}, Voici vos rendez-vous :</h3>
                 {% if appointments is not empty %}
                     <ul>
                         {% for appointment in appointments %}
-                            <li>{{ appointment.title }} - {{ appointment.content }} - {{ appointment.place }} - {{ appointment.scheduledDate ? appointment.scheduledDate|date('Y-m-d H:i:s') : '' }}</li>
+                            <li>{{ appointment.content }} - {{ appointment.scheduledDate ? appointment.scheduledDate|date('Y-m-d H:i:s') : '' }}</li>
                             {# Assurez-vous d'adapter cette partie en fonction de votre modèle de données #}
                             <a style="display: inline-block; padding: 10px 20px; margin: 10px;border-radius: 5px; border: 2px solid dodgerblue; text-decoration: none" href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">Modifier les rendez-vous</a>
                         {% endfor %}
@@ -20,14 +20,5 @@
                 {% endif %}
             </div>
         </div>
-        <div class="button-container align-content-center">
-            <a style="display: inline-block; padding: 10px 20px; margin: 10px;border-radius: 5px; border: 2px solid dodgerblue; text-decoration: none" href="{{ path('app_appointment_show') }}">Afficher les rendez-vous</a>
-
-            <a style="display: inline-block; padding: 10px 20px; margin: 10px;border-radius: 5px; border: 2px solid dodgerblue; text-decoration: none" href="{{ path('app_appointment_new') }}">Créer un nouveau rendez-vous</a>
-        </div>
-
     </div>
-
-
-
 {% endblock %}
