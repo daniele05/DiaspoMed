@@ -8,10 +8,13 @@ use App\Entity\User;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -57,9 +60,13 @@ class AppointmentController extends AbstractController
     }
 
     // nouveau rdv
+
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route('/appointments/new/{id}', name: 'app_appointment_new', methods: ['GET', 'POST'])]
     #[IsGranted("ROLE_USER")]
-    public function new(Doctor $doctor, Request $request): Response
+    public function new(Doctor $doctor, Request $request, MailerInterface $mailer): Response
     {
         // Récup utlistauer connecté
         $user = $this->getUser();
@@ -78,13 +85,32 @@ class AppointmentController extends AbstractController
         // verif si le form a été soumis et validé
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // enregistrement du rdv dans la b2d
-
+            // enregistrement du rdv dans la bdd
             $this->entityManager->persist($appointment);
             $this->entityManager->flush();
 
             $this->addFlash('success',
                 "Merci, votre rendez-vous avec Dr. {$doctor->getUser()->getFirstName()} {$doctor->getUser()->getLastName()} a bien été enregistré.");
+
+            # Envoi d'un email
+            /** @var User $user */
+            $user = $this->getUser();
+
+            # docs. https://mailtrap.io/blog/send-emails-in-symfony/
+            # docs. https://www.wanadevdigital.fr/209-symfony-messenger-gestion-des-messages-en-file-dattente/
+            # docs. https://symfony.com/doc/current/messenger.html#messenger-worker
+            $email = (new TemplatedEmail())
+                ->from('reservation@umla.fr')
+                ->to($user->getEmail())
+                ->subject("Confirmation de votre rendez-vous avec le Dr. {$doctor->getUser()->getFirstName()} {$doctor->getUser()->getLastName()}.")
+                ->htmlTemplate('emails/appointment.html.twig')
+                ->context([
+                    'firstName' => $user->getFirstName(),
+                    'doctor' => $doctor->getUser()->getFirstName(),
+                    'content' => $appointment->getContent(),
+                    'scheduledDate' => $appointment->getScheduledDate()->format('d/m/Y H:i'),
+                ]);
+            $mailer->send($email);
 
             // Redirection vers page de rdv
             return $this->redirectToRoute('app_appointment_show');
