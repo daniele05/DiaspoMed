@@ -5,9 +5,13 @@ namespace App\Entity;
 use App\Repository\SpecialityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use MongoDB\BSON\Type;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+#use MongoDB\BSON\Type;
 
 #[ORM\Entity(repositoryClass: SpecialityRepository::class)]
+#[Vich\Uploadable]
 class Speciality
 {
     #[ORM\Id]
@@ -20,6 +24,13 @@ class Speciality
 
     #[ORM\Column(length: 150)]
     private ?string $specialityName = null;
+
+    #[Vich\UploadableField(mapping: "speciality_images" , fileNameProperty: "specialityImage")]
+    private File $specialityImageFile;
+    public function __construct(){
+        $this->specialityImageFile = new File("specialityImage");
+    }
+
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $specialityContent = null;
@@ -39,6 +50,18 @@ class Speciality
         $this->specialityImage = $specialityImage;
 
         return $this;
+    }
+
+    public function getSpecialityImageFile(): File
+    {
+        return $this->specialityImageFile;
+    }
+
+    public function setSpecialityImageFile(File $specialityImageFile = null): self
+    {
+        $this->specialityImageFile = $specialityImageFile;
+        return $this;
+
     }
 
     public function getSpecialityName(): ?string

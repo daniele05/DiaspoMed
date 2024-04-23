@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 #use App\Form\User1Type;
+use App\Form\ModifyPasswordFormType;
 use App\Form\UserProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/profile')]
@@ -76,6 +78,47 @@ class ProfileController extends AbstractController
     }
  // filtre
 
+    #[Route('/modifyPassword', name: 'app_modify_password', methods: ['GET', 'POST'])]
+    public function modifyPassword(Request $request, UserPasswordHasherInterface $passwordEncoder , EntityManagerInterface $manager): Response
+    {
+        // je m assure que l utilisateur esr authentifié
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        $user = $this->getUser();
+        $form = $this->createForm(ModifyPasswordFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Récupérer le nouveau mot de passe à partir du formulaire
+            $newPassword = $form->get('newPassword')->getData();
+
+            // Hasher le nouveau mot de passe
+            $hashedPassword = $passwordEncoder->hashPassword($user, $newPassword);
+
+            // Définir le nouveau mot de passe haché sur l'utilisateur
+            $user->setPassword($hashedPassword);
+
+            //Enregistrer l'utilisateur mis à jour dans la base de données
+            $manager->persist($user);
+            $manager->flush();
+            //Rediriger ou afficher un message de succès
+            return $this->redirectToRoute('app_profile_show'); // Rediriger vers la page de profil de l'utilisateur
+        }
+
+        // verification de l utilisateur défini
+        if($user !== null){
+            return $this->render('profile/modifyPassword.html.twig', [
+                'form' => $form->createView(),
+                'user' => $user, // Passez l'utilisateur au twig
+            ]);
+        }else{
+            // redirection page login
+            $this->addFlash('notice', 'Veuillez vous connecter.');
+            return $this->redirectToRoute('app_login');
+
+
+        }
+
+    }
 
 }

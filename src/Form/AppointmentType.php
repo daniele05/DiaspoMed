@@ -42,16 +42,9 @@ class AppointmentType extends AbstractType
                 ],
             ])
             ->add('scheduledDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'html5' => true,
-                'attr' => ['class' => 'datetimepicker'],
-                'constraints' => [
-                    new NotNull(),
-                    new Regex([
-                        'pattern' => '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/',
-                        'message' => 'Le format de date n\'est pas valide. Utilisez le format jj/mm/aaaa hh:mm.'
-                    ]),
-            ],
+
+
+
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Create Appointment',

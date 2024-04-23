@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\File;
+#use phpDocumentor\Reflection\File as PhpDocumentorFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 
@@ -28,8 +31,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
+    private ?string $picture;
+
     #[Vich\UploadableField(mapping: "user_images" , fileNameProperty: "picture")]
-    private ?File $picture = null;
+    private ?File $pictureFile = null;
 
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
@@ -81,18 +86,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getPicture(): ?File
+    public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    public function setPicture(?File $picture): static
+    public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
 
         return $this;
     }
 
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(?File $pictureFile = null): self
+    {
+        $this->pictureFile = $pictureFile;
+        return $this;
+/*
+        if(null !== $pictureFile){
+            $this->updatedAt = new \DateTimeImmutable();
+        }*/
+    }
     public function getFirstName(): ?string
     {
         return $this->firstName;

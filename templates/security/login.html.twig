@@ -6,12 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-6 mx-auto">
-                <h3 class="display-5 mb-5"><span class="text-info">Connexion</span></h3>
+                <h3 class="display-5 mb-5"><span class="text-info">Connection</span></h3>
                 <form method="post">
-                    {#{{ form_row(form.picture) }} #}{# Ajout du champ pour l'image #}
                     <label for="inputEmail">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                    <label for="inputPassword">Mot de passe</label>
+                    <label for="inputPassword">Password</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
                     <input type="hidden" name="_csrf_token"
@@ -20,12 +19,12 @@
 
                     <div class="checkbox mb-3">
                         <label>
-                            <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                            <input type="checkbox" name="_remember_me"> Remember Me
                         </label>
                     </div>
 
                     <button class="btn btn-lg btn-info" type="submit">
-                        Connexion
+                        Connection
                     </button>
                 </form>
 
@@ -36,9 +35,15 @@
 
                     {%  if app.user %}
                         <div>
-                            You're logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            You're logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">logout</a>
                         </div>
                     {% endif %}
+
+                    {% for flashMessage in app.flashes('notice') %}
+                        <div class="alert alert-info">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
                 </form>
             </div>
         </div>

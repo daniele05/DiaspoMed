@@ -6,8 +6,13 @@ controllers:
 
  # route accueil
 app_homepage:
-    path: /
+    path: 'home'
     controller: 'App\Controller\DefaultController::home'
+
+
+    #route presentation
+
+
 
 
 #specialite card en detail

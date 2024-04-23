@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -32,6 +33,7 @@ class UserDoctorProfileType extends AbstractType
                     #]),
               #  ],
         #])
+          /*  ->add('picture', FileType::class, ['required'=> false])*/
             ->add('firstName', TextType::class, [
                 'constraints' => [
                     new Regex([
@@ -110,7 +112,7 @@ class UserDoctorProfileType extends AbstractType
                 ]
             ])
 //
-        ->add('submit' ,SubmitType::class ,  [ 'label' => 'Envoyer'])
+        ->add('submit' ,SubmitType::class ,  [ 'label' => 'Send'])
         ;
     }
 

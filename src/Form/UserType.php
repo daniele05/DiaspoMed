@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 #use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,7 +33,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-           # ->add('picture', VichFileType::class, [
+           # ->add('pictureFile', FileType::class, [
             #    'label' => 'Picture',
             #    'required' => false,// le champs n'etant pas obligatoire
              #   'constraints' => [
@@ -55,6 +56,8 @@ class UserType extends AbstractType
                #'multiple' => false, // permet de sélectionner une seule option
                #'mapped' => false, // Ne pas mapper ce champ à une propriété de l'entité User
            #])
+
+            /*->add('picture', FileType::class, ['required'=> false])*/
             ->add('firstName', TextType::class, [
                 'constraints' => [
                     new Regex([
@@ -94,7 +97,7 @@ class UserType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s]).{12,}$/',
-                        'message' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et être d\'au moins 8 caractères de longueur.',
+                        'message' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et être d\'au moins 12 caractères de longueur.',
                     ]),
                 ],
                 'attr' => [
@@ -117,7 +120,7 @@ class UserType extends AbstractType
                     ])
                 ]
             ])
-            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
+            ->add('submit', SubmitType::class, [ 'label' => 'Send']);
 
     }
 

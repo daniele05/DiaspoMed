@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +20,7 @@ class UserPatientProfileType extends AbstractType
     {
         $builder
          #   ->add('picture')
+        /* ->add('picture', FileType::class, ['required'=> false])*/
          ->add('firstName', TextType::class, [
              'constraints' => [
                  new Regex([
@@ -81,7 +83,7 @@ class UserPatientProfileType extends AbstractType
                     ])
                 ]
             ])
-            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
+            ->add('submit', SubmitType::class, [ 'label' => 'Send']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -95,7 +95,11 @@ class AppointmentController extends AbstractController
         // Récupérer l'objet Appointment à éditer à partir de l'ID (par exemple)
         $appointment = $appointmentRepository->find($id); // Assurez-vous de remplacer $id par l'ID réel de l'Appointment à éditer
 
-        // Créer le formulaire en utilisant l'objet Appointment récupéré
+        // verification si l objet appointment est bien defini
+        if(!$appointment){
+            throw $this->createNotFoundException('No appointment found for id '.$id);
+        }
+        // Alors , Créer le formulaire en utilisant l'objet Appointment récupéré
         $form = $this->createForm(AppointmentType::class, $appointment);
         $form->handleRequest($request);
         dump($id);
@@ -111,4 +115,25 @@ class AppointmentController extends AbstractController
     }
 
 
+
+    #[Route('/delete/{id}', name: 'app_appointment_delete', methods: ['DELETE'])]
+    public function delete(EntityManagerInterface $entityManager, Appointment $appointment, AppointmentRepository $appointmentRepository, $id): Response
+    {
+
+
+        // Récupérer l'objet Appointment à éditer à partir de l'ID
+        $appointment = $appointmentRepository->find($id); // Assurez-vous de remplacer $id par l'ID réel de l'Appointment à éditer
+
+        // verification si l objet appointment est bien defini
+        if(!$appointment){
+            throw $this->createNotFoundException('No appointment found for id '.$id);
+        }
+
+        // Suppression de l objet appointment
+        $entityManager->remove($appointment);
+        $entityManager->flush();
+
+      // Redirection vers la liste des rdv après suppression
+        return $this->redirectToRoute('app_appointment_show');
+    }
 }

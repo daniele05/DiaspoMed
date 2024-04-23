@@ -22,7 +22,7 @@ class UserProfileType extends AbstractType
             ->add('password')
             ->add('phoneNumber')
             ->add('address')
-            ->add('submit', SubmitType::class, [ 'label' => 'Envoyer']);
+            ->add('submit', SubmitType::class, [ 'label' => 'Send']);
 
     }
 

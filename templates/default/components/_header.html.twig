@@ -13,9 +13,10 @@
                 <li class="nav-item ml-5 ">
                     <a class="nav-link text-info active" href="{{ path('home') }}">Accueil</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item  ml-5">
                     <a class="nav-link text-info" href="{{ path('app_default_presentation') }}">A propos</a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link text-info dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Nos Services</a>
                     <div class="dropdown-menu">
@@ -37,16 +38,12 @@
                                     </ul>
                                 </div>
 
-
-
-
-
                         {% endif %}
                     </div>
                 </li>
             </ul>
             <div class="d-flex m-3" >
-                <button type="button" class="btn btn-info">Prendre rdv</button>
+                <a href="{{ path('app_appointment_new' , { 'id' : app.user.id}) }}">Prendre rdv</a>
             </div>
         </div>
     </div>

@@ -4,12 +4,14 @@
 
 {% block body %}
 <div class="container">
-    <h3 class="mb-3 pt-3">Modification de mon profil</h3>
+    <h3 class="mb-3 pt-3">Editing my profile</h3>
     <div class="container">
 
     {{ include('profile/_form.html.twig', {'button_label': 'Update'}) }}
+
     </div>
 
-   <button><a href="{{ path('app_profile_show') }}">Retour au profile</a></button>
+   <button><a href="{{ path('app_profile_show') }}">Back to profile</a></button>
 </div>
 {% endblock %}
+

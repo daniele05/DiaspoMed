@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container">
-        <h3 class="mb-3 pt-3">Profil de <span class="text-info">{{ user.firstName }} {{ user.lastName }}</span></h3>
+        <h3 class="mb-3 pt-3"><span class="text-info">{{ user.firstName }} {{ user.lastName }}</span> 's Profile</h3>
         <div class="container">
 
                 <table class="table">
@@ -16,7 +16,7 @@
                         {% if user.picture is not null %}
                             <td><img src="{{ asset('assets/image/' ~ user.picture) }}" alt="Photo de profil"></td>
                         {% else %}
-                            <td>Aucune image disponible</td>
+                            <td>No images available</td>
                         {% endif %}
                     </tr>
                     {% if 'ROLE_ADMIN' in user.roles %}
@@ -24,15 +24,15 @@
                             <th>Id</th>
                             <td>{{ user.id }}</td>
                     <tr> {% endif %}
-                        <th>FirstName</th>
+                        <th>Firstname</th>
                         <td>{{ user.firstName }}</td>
                     </tr>
                     <tr>
-                        <th>LastName</th>
+                        <th>Lastname</th>
                         <td>{{ user.lastName }}</td>
                     </tr>
                     <tr>
-                        <th>BirthDate</th>
+                        <th>Birthdate</th>
                         <td>{{ user.birthDate }}</td>
                     </tr>
                     <tr>
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>Password</th>
-                        <td>{{ user.password }}</td>
+                        <td><span id="password-placeholder"> {{ user.password }}</span></td>
                     </tr>
                     {% if 'ROLE_ADMIN' in user.roles %}
                         <tr>
@@ -51,16 +51,16 @@
                     {% endif %}
                     {% if 'ROLE_DOCTOR' in user.roles %}
                         <tr>
-                            <th>RPPSNumber</th>
+                            <th>RPPS Number </th>
                             <td>{{ user.RPPSNumber }}</td>
                         </tr>
                         <tr>
-                            <th>CvUser</th>
+                            <th>Doctor Cv</th>
                             <td>{{ user.CvUser }}</td>
                         </tr>
                     {% endif %}
                     <tr>
-                        <th>PhoneNumber</th>
+                        <th>Fone </th>
                         <td>{{ user.phoneNumber }}</td>
                     </tr>
                     <tr>
@@ -69,19 +69,31 @@
                     </tr>
                     {% if 'ROLE_ADMIN' in user.roles %}
                         <tr>
-                            <th>CreatedAt</th>
+                            <th>CreateAt </th>
                             <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                         </tr>
                         <tr>
-                            <th>UpdatedAt</th>
+                            <th>updatedAt</th>
                             <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                         </tr>
                     {% endif %}
                     </tbody>
                 </table>
         </div>
-        <button><a href="{{ path('app_profile_edit')}}" class="text-warning">Modifier</a></button>
+        <div>
+            <button><a href="{{ path('app_profile_edit')}}" class="text-warning">Edit</a></button>
+        </div>
+
     </div>
 
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var passwordPlaceholder = document.getElementById('password-placeholder');
+            passwordPlaceholder.textContent = ''; // Remplacer le texte par une chaîne vide
+        });
+    </script>
 {% endblock %}
