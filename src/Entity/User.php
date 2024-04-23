@@ -80,6 +80,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Doctor $doctor = null;
+
 
     public function getId(): ?int
     {
@@ -303,6 +306,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isAdmin():bool
     {
         return in_array('ROLE_ADMIN', $this->roles);
+    }
+
+    public function getDoctor(): ?Doctor
+    {
+        return $this->doctor;
+    }
+
+    public function setDoctor(?Doctor $doctor): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($doctor === null && $this->doctor !== null) {
+            $this->doctor->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($doctor !== null && $doctor->getUser() !== $this) {
+            $doctor->setUser($this);
+        }
+
+        $this->doctor = $doctor;
+
+        return $this;
     }
 
 

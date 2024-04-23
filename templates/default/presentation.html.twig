@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} ici ma Page A propos{% endblock %}
+{% block title %}Qui sommes-nous ?{% endblock %}
 
 
 {% block body %}
@@ -10,71 +10,90 @@
     <div class="container">
         <!--Jumbotron-->
         <div class="row">
-            <div class="jumbotron col-md-4 mr-lg-5 mr-5">
-                <h1 class="display-5 text-info">Qui sommes-nous?</h1>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
-                <hr class="my-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
-                <div class="jumbotron col-md-12 mr-lg-5 mr-5" >
-                    <img src="{{ asset('assets/images/galerie/equipe2.jpg') }}" class="img-thumbnail h-100 w-100" alt="...">
-                </div>
-            </div>
-            <div class="container">
-                <div class="flex-column m-2">
-                    <div class="col-sm text-center">
-                        <div class=" h-50 mb-3 border-info">
-                            <img class="img-thumbnail teams w-50" src="{{ asset('assets/images/galerie/Equipe1 (2).jpg') }}" alt="Card image cap">
+            <div class="col">
+                <main>
+                    <div class="container py-4">
+                        <div class="p-5 mb-4 bg-light rounded-3">
+                            <div class="container-fluid py-5">
+                                <h1 class="display-5 fw-bold text-info">Qui sommes-nous ?</h1>
+                                <p class="col-md-8 fs-4">Faciliter l'accès aux soins de santé : Umla vise à réduire les
+                                    obstacles à l'accès aux soins en fournissant une plateforme conviviale et
+                                    accessible, permettant aux patients des zones rurales et éloignées de bénéficier de
+                                    services médicaux de qualité.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm text-center">
-                        <div class=" h-50 mb-3 border-info">
-                            <img class="img-thumbnail teams w-50" src="{{ asset('assets/images/galerie/equipe3.jpg') }}" alt="Card image cap">
+
+                        <div class="row align-items-md-stretch mt-4">
+                            <div class="col">
+                                <div id="carouselExampleIndicators" class="carousel slide">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="0" class="active" aria-current="true"
+                                                aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="{{ asset('assets/images/galerie/Equipe1 (2).jpg') }}"
+                                                 class="rounded d-block w-100 object-fit-cover"
+                                                 style="object-position: top" height="400" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="{{ asset('assets/images/galerie/equipe3.jpg') }}"
+                                                 class="rounded d-block w-100 object-fit-cover"
+                                                 style="object-position: top" height="400" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="{{ asset('assets/images/galerie/equipe4.jpg') }}"
+                                                 class="rounded d-block w-100 object-fit-cover"
+                                                 style="object-position: top" height="400" alt="...">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm text-center">
-                        <div class=" h-50 border-2 border-info">
-                            <img class="img-thumbnail teams w-50" src="{{ asset('assets/images/galerie/equipe4.jpg') }}" alt="Card image cap">
+
+                        <div class="row align-items-md-stretch mt-4">
+                            <div class="col-md-6">
+                                <div class="h-100 p-5 text-white bg-info rounded-3">
+                                    <h2>Assurer un suivi médical efficace</h2>
+                                    <p>sEn mettant en place un système de suivi des
+                                        patients robuste, nous visons à améliorer la gestion des dossiers médicaux, la
+                                        prise de rendez-vous et le suivi des traitements, garantissant ainsi un meilleur
+                                        suivi médical et une meilleure prise en charge des maladies chroniques.</p>
+                                    <a href="{{ path('app_default_doctors') }}" class="btn btn-outline-light">Consulter un practicien</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="h-100 p-5 bg-light border rounded-3">
+                                    <h2>Renforcer les infrastructures de santé</h2>
+                                    <p>Le projet Umla comprend également une composante visant à renforcer les
+                                        infrastructures de santé locales en fournissant des outils et des formations aux
+                                        professionnels de la santé, afin d'optimiser la gestion des ressources et
+                                        d'améliorer la qualité des soins dispensés.</p>
+                                    <a href="{{ path('app_default_doctors') }}" class="btn btn-outline-secondary">Consulter un practicien</a>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     </div>
-
-    <!--Carroussel-->
-
-    <div class="container mt-4">
-
-        <h1 class="display-5 mb-4 text-info text-center">Galérie photos</h1>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/galerie/equipe2.jpg') }}" class="img-thumbnail d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/galerie/img_galerie3.jpg') }}" class="img-thumbnail d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/galerie/equipe3.jpg') }}" class="img-thumbnail d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/galerie/equipe4.jpg') }}" class="img-thumbnail d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Précédent</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Suivant</span>
-            </button>
-        </div>
-
-    </div>
-
-
-
 {% endblock %}
 
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpecialityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -29,11 +31,15 @@ class Speciality
     private File $specialityImageFile;
     public function __construct(){
         $this->specialityImageFile = new File("specialityImage");
+        $this->doctors = new ArrayCollection();
     }
 
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $specialityContent = null;
+
+    #[ORM\OneToMany(targetEntity: Doctor::class, mappedBy: 'speciality')]
+    private Collection $doctors;
 
     public function getId(): ?int
     {
@@ -84,6 +90,36 @@ class Speciality
     public function setSpecialityContent(string $specialityContent): static
     {
         $this->specialityContent = $specialityContent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Doctor>
+     */
+    public function getDoctors(): Collection
+    {
+        return $this->doctors;
+    }
+
+    public function addDoctor(Doctor $doctor): static
+    {
+        if (!$this->doctors->contains($doctor)) {
+            $this->doctors->add($doctor);
+            $doctor->setSpeciality($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDoctor(Doctor $doctor): static
+    {
+        if ($this->doctors->removeElement($doctor)) {
+            // set the owning side to null (unless already changed)
+            if ($doctor->getSpeciality() === $this) {
+                $doctor->setSpeciality(null);
+            }
+        }
 
         return $this;
     }

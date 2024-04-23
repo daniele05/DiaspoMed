@@ -18,41 +18,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_default_presentation') }}">A propos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Nos services
-                        </a>
-                        <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ path('app_default_cardspeciality') }}"> Spécialités</a>
-                            <a class="dropdown-item" href="{{ path('app_default_doctors') }}">Médécins</a>
-                            <a class="dropdown-item" href="{{ path('app_default_consultation') }}">Contact &
-                                Consultation</a>
-                            <a class="dropdown-item" href="{{ path('app_default_posologie') }}">Posologie</a>
-                            <div class="dropdown-divider"></div>
-                            {% if app.user %}
-                                <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
-                            {% else %}
-                                <a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a>
-
-                                <a class="dropdown-item" href="#">Inscription</a>
-                                <div>
-                                    <ul>
-                                        <li><a class="text-dark text-decoration-none"
-                                               href="{{ path('app_user_registerdoctor') }}">Inscription Docteur</a></li>
-                                        <li><a class="text-dark text-decoration-none"
-                                               href="{{ path('app_user_registerpatient') }}">Inscription Patient</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            {% endif %}
-                        </ul>
-                    </li>
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav ">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_appointment_new') }}">
+                            <a class="nav-link" href="{{ path('app_default_doctors') }}">
                                 <i class="fa fa-user-doctor"></i>
                                 Consultation en ligne
                             </a>
