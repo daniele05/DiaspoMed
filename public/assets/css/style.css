@@ -1,0 +1,174 @@
+body{
+    background-color: #fff;
+}
+.navbar{
+    border-style: none !important;
+
+}
+.container-fluid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(100px,1px));
+    border: 1px solid #ccc ;
+}
+.jumbotron {
+
+    background-color: #ffffff;
+}
+.btn-lg{
+    background-color: #2B4ABA;
+}
+.h3{
+    font-family: poppins, sans-serif;
+    font-weight: bold;
+}
+.dropdown-item .nav-item{
+    color: #2B4ABA;
+}
+.logo{
+    max-width: 8rem;
+}
+/* section Services*/
+.m-4{
+
+    /* margin: 2rem; !important;*/
+    padding: 2rem;
+}
+.overlay>row {
+    top: 0rem;
+    left: 0rem;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px;
+
+    /* Indiquez un index z élevé pour assurer que l'overlay est au-dessus de tout le contenu */
+
+
+}
+
+.row{
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.card {
+
+    border-radius: 1.50rem;
+
+
+}
+.card-img{
+    border: 2rem;
+}
+.teams{
+}
+
+.col-3{
+    border: 2px !important;
+    background-color: #2B4ABA;
+    padding: 3rem!important;
+}
+.col-4{
+    border: 3px !important;
+    background-color: #1270B0;
+    padding: 3rem;
+}
+.service {
+    color: #ffffff;
+    border: 1px solid #ccc ;
+}
+.card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.card-img-fluid{
+    border-radius: 20px;
+}
+
+/* section sondage*/
+.container-sondage{
+    background-image: url('../images/backgroundimage.png');
+    background-size: cover;
+    background-color: #185FA0;
+    border-style: none !important;
+    /*border: 1px solid #ccc  !important;*/
+    margin: 1rem;
+    padding: 2rem;
+}
+.downloadUmla {
+    font-size: 15px;
+
+}{
+
+}
+
+
+.col-7{
+    /*background-image: url("../images/backgroundimage.png");*/
+
+
+
+
+}
+/*   section Posts*/
+
+
+/* page medecin*/
+
+
+.img-thumbnail{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+/* form inscription*/
+.btn{
+    color: #2B4ABA;
+}
+/*   footer*/
+
+.footer{
+    border: 1px solid #ccc ;
+
+}
+
+/* video consultation*/
+/*container contact de video consultation*/
+
+
+
+.contact{
+    background-image: url('../images/backgroundimage.png');
+    background-size: cover;
+    background-color: #185FA0;
+}
+
+/* button de ma page rdv */
+
+.button-container {
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* floutter le m2p cote nav*/
+.flou {
+    color: transparent; /* Rend le texte transparent */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Ajoute une ombre pour donner l'effet de flou */
+}
