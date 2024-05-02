@@ -148,7 +148,7 @@ class AppointmentController extends AbstractController
     }
 
 
-    #[Route('/delete/{id}', name: 'app_appointment_delete', methods: ['DELETE'])]
+    #[Route('/delete/{id}', name: 'app_appointment_delete', methods: ['DELETE', 'POST'])]
     public function delete(EntityManagerInterface $entityManager, Appointment $appointment, AppointmentRepository $appointmentRepository, $id): Response
     {
 
